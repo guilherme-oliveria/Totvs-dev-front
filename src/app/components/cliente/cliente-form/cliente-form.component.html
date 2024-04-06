@@ -1,0 +1,55 @@
+ <div class="po-row">
+    <div class="po-md-6">
+      <po-dynamic-form
+        #dynamicFormClienteForm
+        p-auto-focus="nome"
+        [p-validate-fields]="validateFields"
+        [p-fields]="fields"
+        [p-value]="cliente"
+      >
+      </po-dynamic-form>
+    </div>
+
+    <div class="po-md-6">
+      <po-container>
+        <po-dynamic-form
+          #dynamicFormTelefoneCliente
+          [p-fields]="fieldsTelefone"
+          [p-value]="telefoneCliente"
+        >
+        </po-dynamic-form>
+
+        <po-button  class="po-sm-2"
+                    [p-label]="'Adicionar'"
+                    [p-icon]="'po-icon po-icon-plus-circle'"
+                   (p-click)="validateAndAddTelefone()">
+        </po-button>
+      </po-container>
+
+      <po-table class="po-md-12"
+                [p-columns]="telefoneColumns"
+                [p-hide-columns-manager]="true"
+                [p-items]="findTelefoneCliente()"
+                [p-sort]="true"
+                [p-spacing]="spacing"
+                [p-actions]="actionsTelefoneCliente"
+                [p-actions-right]="true"
+      >
+        <ng-template p-table-cell-template let-column="column" let-row="row">
+          <span>{{ row.numero | telefonePipe }}</span>
+        </ng-template>
+      </po-table>
+    </div>
+  </div>
+
+  <po-divider></po-divider>
+
+  <div>
+    <po-button p-label="Salvar"
+               [p-disabled]="validForm()"
+               (p-click)="saveCliente()" >
+    </po-button>
+    <po-button p-label="Cancelar" routerLink="/cliente">
+    </po-button>
+  </div>
+ <po-loading-overlay [p-screen-lock]="true" [hidden]="isHideLoading" [p-text]="'Aguarde'"></po-loading-overlay>

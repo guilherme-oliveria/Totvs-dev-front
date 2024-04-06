@@ -1,0 +1,19 @@
+<div class="button-container">
+  <po-button p-label="Incluir" routerLink="/cliente/incluir"></po-button>
+</div>
+<po-table
+  [p-columns]="clienteColumns"
+  [p-items]="clienteData"
+  [p-spacing]="spacing"
+  [p-actions]="tableActions"
+  [p-hide-table-search]="false"
+  [p-actions-right]="true">
+</po-table>
+
+<po-modal #deleteModal p-title="Confirmação de Exclusão">
+  <p>Deseja realmente excluir este cliente?</p>
+  <po-modal-footer>
+    <po-button p-label="Sim" p-type="danger" p-size="sm" (p-click)="confirmDelete()"></po-button>
+    <po-button p-label="Não" p-size="sm" (p-click)="cancelDelete()"></po-button>
+  </po-modal-footer>
+</po-modal>
